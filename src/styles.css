@@ -108,52 +108,335 @@ body.light {
     --border-card: solid 1px var(--bg);
 }
 
+/* ================================
+   Application
+================================ */
 
-
-/** Start CSS **/
 body {
+    min-height: 100vh;
     background: var(--bg-dark);
-    color: var(--text-muted);
+    color: var(--text);
+}
+
+button,
+input,
+label {
+    font: inherit;
 }
 
 button {
-    background: var(--bg-light);
-    padding: 0.5rem 1rem 0.7rem 1rem;
-    color: var(--text);
-    font-weight: 700;
-    border-radius: 0.5rem;
-    border: var(--border-card);
-    margin-top: 1.5rem;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: var(--transition);
+    color: inherit;
 }
 
-button:hover {
-    transform: translateY(-3px);
-    transition: var(--transition);
-}
 
-div {
-    background: var(--gradient);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    border: var(--border-card);
-    border-top: solid 1px var(--highlight);
-    box-shadow: var(--shadow);
-}
+/* ================================
+   App Layout
+================================ */
 
-div:hover {
-    background: var(--gradient-hover);
-}
-
-section {
-    display: flex;
+#app {
+    width: min(100% - var(--spacing4) * 2, 1000px);
     min-height: 100vh;
-    align-items: center;
-    justify-content: center;
+
+    margin: 0 auto;
+    padding: var(--spacing6) 0;
 }
 
-h4 {
+
+/* ================================
+   Header
+================================ */
+
+.app-header {
+    margin-bottom: var(--spacing6);
+    text-align: center;
+}
+
+.app-header h1 {
     color: var(--text);
+}
+
+.app-header p {
+    margin-top: var(--spacing2);
+
+    color: var(--text-muted);
+    font: var(--p);
+}
+
+
+/* ================================
+   Drop Zone
+================================ */
+
+.drop-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 280px;
+    padding: var(--spacing6);
+
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+
+    background: var(--bg);
+
+    text-align: center;
+
+    transition:
+        border-color var(--transition),
+        background var(--transition);
+}
+
+.drop-zone:hover {
+    border-color: var(--primary);
+    background: var(--bg-light);
+}
+
+.drop-zone.dragging {
+    border-color: var(--primary);
+    background: var(--bg-light);
+}
+
+.drop-zone label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+}
+
+.drop-zone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: var(--spacing3);
+}
+
+.drop-zone-title {
+    color: var(--text);
+    font: var(--h5);
+}
+
+.drop-zone-description {
+    color: var(--text-muted);
+    font: var(--p);
+}
+
+.drop-zone-button {
+    padding: var(--spacing2) var(--spacing4);
+
+    border: var(--border-card);
+    border-radius: 6px;
+
+    background: var(--primary);
+    color: var(--bg-dark);
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition),
+        transform var(--transition);
+}
+
+.drop-zone-button:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   File List
+================================ */
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing2);
+
+    margin-top: var(--spacing5);
+}
+
+
+/* ================================
+   File Item
+================================ */
+
+.file-item {
+    display: flex;
+    align-items: center;
+
+    gap: var(--spacing3);
+
+    padding: var(--spacing3);
+
+    border: var(--border-card);
+    border-radius: 8px;
+
+    background: var(--bg);
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.file-item:hover {
+    background: var(--bg-light);
+    border-color: var(--highlight);
+}
+
+.file-item-info {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.file-item-name {
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-item-size {
+    margin-top: var(--spacing1);
+
+    color: var(--text-muted);
+    font: var(--small);
+}
+
+.file-item-remove {
+    flex-shrink: 0;
+
+    padding: var(--spacing2) var(--spacing3);
+
+    border: var(--border-card);
+    border-radius: 6px;
+
+    background: transparent;
+    color: var(--text-muted);
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+}
+
+.file-item-remove:hover {
+    border-color: var(--danger);
+    background: var(--danger);
+    color: var(--bg-dark);
+}
+
+
+/* ================================
+   Empty File List
+================================ */
+
+.file-list-empty {
+    padding: var(--spacing5);
+
+    border: var(--border-card);
+    border-radius: 8px;
+
+    color: var(--text-muted);
+
+    text-align: center;
+}
+
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 600px) {
+    #app {
+        padding: var(--spacing5) 0;
+    }
+
+    .drop-zone {
+        min-height: 220px;
+        padding: var(--spacing4);
+    }
+
+    .file-item {
+        align-items: flex-start;
+    }
+
+    .file-item-remove {
+        padding: var(--spacing2);
+    }
+}
+
+/* ================================
+   File Status
+================================ */
+
+.file-item-status {
+    flex-shrink: 0;
+
+    color: var(--text-muted);
+    font: var(--small);
+}
+
+.file-item-progress {
+    width: 120px;
+    height: 6px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: var(--bg-light);
+}
+
+.file-item-progress-bar {
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--primary);
+
+    transition: width 0.2s ease;
+}
+
+.file-item-download {
+    flex-shrink: 0;
+
+    padding: var(--spacing2) var(--spacing3);
+
+    border: var(--border-card);
+    border-radius: 6px;
+
+    background: var(--primary);
+    color: var(--bg-dark);
+
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition),
+        transform var(--transition);
+}
+
+.file-item-download:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
 }

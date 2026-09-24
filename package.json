@@ -29,5 +29,9 @@
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "heic-to": "^1.5.2",
+    "jszip": "^3.10.2"
   }
 }
