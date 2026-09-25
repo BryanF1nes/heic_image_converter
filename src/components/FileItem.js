@@ -57,12 +57,15 @@ const FileItem = {
 
         status.textContent = this.getStatusText(item.status);
 
-        progressBar.style.width = `${item.progress}%`;
-
-        progressBar.style.display =
+        progressBar.classList.toggle(
+            "is-converting",
             item.status === "converting"
-                ? "block"
-                : "none";
+        );
+
+        progressBar.classList.toggle(
+            "is-complete",
+            item.status === "complete"
+        );
     },
 
     getStatusText(status) {

@@ -4,12 +4,13 @@ import FileItem from "./FileItem";
 const FileList = {
     elements: new Map(),
 
-    render() {
+    render(onUpdate) {
         const container = document.createElement("section");
 
         container.classList.add("file-list");
 
         this.container = container;
+        this.onUpdate = onUpdate;
 
         this.update();
 
@@ -45,7 +46,7 @@ const FileList = {
             const fileItem = FileItem.render(item, () => {
                 removeFile(item.id);
 
-                this.update();
+                this.onUpdate();
             });
 
             this.elements.set(item.id, fileItem);

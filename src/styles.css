@@ -1,144 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Unkempt:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 
-/* Reset */
+/* ================================
+   Reset
+================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--ff);
 }
 
-/* Variables */
+html {
+    font-family: "Roboto", sans-serif;
+}
+
+body,
+button,
+input,
+label {
+    font-family: inherit;
+}
+
+
+/* ================================
+   Variables
+================================ */
+
 :root {
-    /** Colors **/
-    --bg-dark: oklch(0.1 0.04 255);
-    --bg: oklch(0.15 0.04 255);
-    --bg-light: oklch(0.2 0.04 255);
-    --text: oklch(0.96 0.08 255);
-    --text-muted: oklch(0.76 0.08 255);
-    --highlight: oklch(0.5 0.08 255);
-    --border: oklch(0.4 0.08 255);
-    --border-muted: oklch(0.3 0.08 255);
-    --primary: oklch(0.76 0.1 255);
-    --secondary: oklch(0.76 0.1 75);
+    /* Colors */
+    --bg: #ffffff;
+    --bg-subtle: #fafafa;
+    --bg-muted: #f4f4f4;
 
-    /** Warnings **/
-    --danger: oklch(0.7 0.08 30);
-    --warning: oklch(0.7 0.08 100);
-    --success: oklch(0.7 0.08 160);
-    --info: oklch(0.7 0.08 260);
+    --text: #111111;
+    --text-muted: #666666;
+    --text-subtle: #888888;
 
-    /** Fonts **/
-    --ff: "Inter", sans-serif;
-    --h1: 700 5.61rem/1.6em var(--ff);
-    --h2: 600 4.209rem/1.6em var(--ff);
-    --h3: 600 3.157rem/1.6em var(--ff);
-    --h4: 600 2.369rem/1.6em var(--ff);
-    --h5: 500 1.777rem/1.6em var(--ff);
-    --h6: 500 1.333rem/1.6em var(--ff);
-    --p: 500 1rem/1.6em var(--ff);
-    --small: 500 0.75rem/1.6em var(--ff);
-    --extra-small: 500 0.563rem/1.6em var(--ff);
+    --border: #e5e5e5;
+    --border-dark: #d0d0d0;
 
-    /** Spacing **/
+    --black: #111111;
+    --white: #ffffff;
+
+    /* Spacing */
     --spacing1: 4px;
     --spacing2: 8px;
     --spacing3: 16px;
     --spacing4: 20px;
-    --spacing5: 40px;
-    --spacing6: 80px;
-    --spacing7: 160px;
+    --spacing5: 32px;
+    --spacing6: 64px;
+    --spacing7: 96px;
 
-    /** Shadows & Gradients **/
-    --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
-    --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
-    --border-card: solid 1px var(--border);
-    --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
-    --transition: 0.3s ease-in-out;
+    /* Other */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 5%);
+    --shadow-md: 0 4px 12px rgb(0 0 0 / 6%);
+
+    --transition: 0.2s ease;
 }
 
-/** Font Resets **/
+
+/* ================================
+   Base
+================================ */
+
+body {
+    min-height: 100vh;
+
+    background: var(--bg-subtle);
+    color: var(--text);
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ================================
+   Typography
+================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
 h1 {
-    font: var(--h1);
+    font-size: 2rem;
 }
 
 h2 {
-    font: var(--h2);
+    font-size: 1.5rem;
 }
 
 h3 {
-    font: var(--h3);
-}
-
-h4 {
-    font: var(--h4);
-}
-
-h5 {
-    font: var(--h5);
-}
-
-h6 {
-    font: var(--h6);
+    font-size: 1.25rem;
 }
 
 p {
-    font: var(--p);
+    line-height: 1.6;
 }
 
-/** Light Mode **/
-body.light {
-    --bg-dark: oklch(0.92 0.04 255);
-    --bg: oklch(0.96 0.04 255);
-    --bg-light: oklch(1 0.04 255);
-    --text: oklch(0.15 0.08 255);
-    --text-muted: oklch(0.4 0.08 255);
-    --highlight: oklch(1 0.08 255);
-    --border: oklch(0.6 0.08 255);
-    --border-muted: oklch(0.7 0.08 255);
-    --primary: oklch(0.4 0.1 255);
-    --secondary: oklch(0.4 0.1 75);
-    --danger: oklch(0.5 0.08 30);
-    --warning: oklch(0.5 0.08 100);
-    --success: oklch(0.5 0.08 160);
-    --info: oklch(0.5 0.08 260);
-
-    --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
-    --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
-    --border-card: solid 1px var(--bg);
-}
 
 /* ================================
    Application
 ================================ */
 
-body {
-    min-height: 100vh;
-    background: var(--bg-dark);
-    color: var(--text);
-}
-
-button,
-input,
-label {
-    font: inherit;
-}
-
-button {
-    color: inherit;
-}
-
-
-/* ================================
-   App Layout
-================================ */
-
 #app {
-    width: min(100% - var(--spacing4) * 2, 1000px);
+    width: min(100% - 32px, 760px);
     min-height: 100vh;
 
     margin: 0 auto;
-    padding: var(--spacing6) 0;
+    padding: var(--spacing7) 0;
 }
 
 
@@ -148,18 +129,25 @@ button {
 
 .app-header {
     margin-bottom: var(--spacing6);
+
     text-align: center;
 }
 
 .app-header h1 {
     color: var(--text);
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
 }
 
 .app-header p {
-    margin-top: var(--spacing2);
+    max-width: 520px;
+    margin: var(--spacing3) auto 0;
 
     color: var(--text-muted);
-    font: var(--p);
+
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 
@@ -172,11 +160,11 @@ button {
     justify-content: center;
     align-items: center;
 
-    min-height: 280px;
+    min-height: 260px;
     padding: var(--spacing6);
 
-    border: 2px dashed var(--border);
-    border-radius: 12px;
+    border: 1px dashed var(--border-dark);
+    border-radius: var(--radius-lg);
 
     background: var(--bg);
 
@@ -184,17 +172,15 @@ button {
 
     transition:
         border-color var(--transition),
-        background var(--transition);
+        background-color var(--transition),
+        box-shadow var(--transition);
 }
 
-.drop-zone:hover {
-    border-color: var(--primary);
-    background: var(--bg-light);
-}
-
+.drop-zone:hover,
 .drop-zone.dragging {
-    border-color: var(--primary);
-    background: var(--bg-light);
+    border-color: var(--black);
+    background: var(--bg-subtle);
+    box-shadow: var(--shadow-md);
 }
 
 .drop-zone label {
@@ -218,35 +204,57 @@ button {
 
 .drop-zone-title {
     color: var(--text);
-    font: var(--h5);
+
+    font-size: 1.125rem;
+    font-weight: 600;
 }
 
 .drop-zone-description {
     color: var(--text-muted);
-    font: var(--p);
+
+    font-size: 0.95rem;
 }
 
-.drop-zone-button {
-    padding: var(--spacing2) var(--spacing4);
 
-    border: var(--border-card);
-    border-radius: 6px;
+/* ================================
+   Buttons
+================================ */
 
-    background: var(--primary);
-    color: var(--bg-dark);
+.drop-zone-button,
+.container button {
+    padding: 10px 16px;
 
-    font-weight: 600;
+    border: 1px solid var(--black);
+    border-radius: var(--radius-sm);
 
-    cursor: pointer;
+    background: var(--black);
+    color: var(--white);
+
+    font-size: 0.9rem;
+    font-weight: 500;
 
     transition:
-        background var(--transition),
+        background-color var(--transition),
+        color var(--transition),
+        border-color var(--transition),
         transform var(--transition);
 }
 
-.drop-zone-button:hover {
-    background: var(--secondary);
+.drop-zone-button:hover,
+.container button:hover:not(:disabled) {
+    background: #333333;
+    border-color: #333333;
     transform: translateY(-1px);
+}
+
+.container button:disabled {
+    cursor: not-allowed;
+
+    background: var(--bg-muted);
+    border-color: var(--border);
+    color: var(--text-subtle);
+
+    transform: none;
 }
 
 
@@ -276,19 +284,21 @@ button {
 
     padding: var(--spacing3);
 
-    border: var(--border-card);
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 
     background: var(--bg);
 
+    box-shadow: var(--shadow-sm);
+
     transition:
-        background var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 .file-item:hover {
-    background: var(--bg-light);
-    border-color: var(--highlight);
+    border-color: var(--border-dark);
+    box-shadow: var(--shadow-md);
 }
 
 .file-item-info {
@@ -296,7 +306,6 @@ button {
     flex-direction: column;
 
     flex: 1;
-
     min-width: 0;
 }
 
@@ -305,7 +314,9 @@ button {
 
     color: var(--text);
 
+    font-size: 0.95rem;
     font-weight: 500;
+
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -313,33 +324,39 @@ button {
 .file-item-size {
     margin-top: var(--spacing1);
 
-    color: var(--text-muted);
-    font: var(--small);
+    color: var(--text-subtle);
+
+    font-size: 0.8rem;
 }
+
+
+/* ================================
+   Remove Button
+================================ */
 
 .file-item-remove {
     flex-shrink: 0;
 
-    padding: var(--spacing2) var(--spacing3);
+    padding: 7px 10px;
 
-    border: var(--border-card);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
 
-    background: transparent;
+    background: var(--white);
     color: var(--text-muted);
 
-    cursor: pointer;
+    font-size: 0.85rem;
 
     transition:
-        color var(--transition),
         border-color var(--transition),
-        background var(--transition);
+        background-color var(--transition),
+        color var(--transition);
 }
 
 .file-item-remove:hover {
-    border-color: var(--danger);
-    background: var(--danger);
-    color: var(--bg-dark);
+    border-color: #bbbbbb;
+    background: var(--bg-muted);
+    color: var(--text);
 }
 
 
@@ -350,12 +367,125 @@ button {
 .file-list-empty {
     padding: var(--spacing5);
 
-    border: var(--border-card);
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--bg);
 
     color: var(--text-muted);
 
     text-align: center;
+}
+
+
+/* ================================
+   Action Container
+================================ */
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: var(--spacing2);
+
+    margin-top: var(--spacing3);
+}
+
+
+/* ================================
+   File Status
+================================ */
+
+.file-item-status {
+    flex-shrink: 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.8rem;
+}
+
+.file-item-progress {
+    width: 20%;
+    height: 4px;
+    overflow: hidden;
+    background: var(--bg-muted);
+    border-radius: 999px;
+}
+
+.file-item-progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--black);
+    border-radius: 999px;
+}
+
+#start-new-button {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-dark);
+}
+
+#start-new-button:hover:not(:disabled) {
+    background: var(--bg-muted);
+    border-color: var(--text);
+}
+
+#start-new-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Conversion in progress */
+.file-item-progress-bar.is-converting {
+    width: 35%;
+    animation: progress-indeterminate 1.2s ease-in-out infinite;
+}
+
+/* Conversion finished */
+.file-item-progress-bar.is-complete {
+    width: 100%;
+    animation: none;
+    transform: translateX(0);
+}
+
+@keyframes progress-indeterminate {
+    0% {
+        transform: translateX(-150%);
+    }
+
+    100% {
+        transform: translateX(350%);
+    }
+}
+
+/* ================================
+   File Download
+================================ */
+
+.file-item-download {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    border: 1px solid var(--black);
+    border-radius: var(--radius-sm);
+
+    background: var(--black);
+    color: var(--white);
+
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background-color var(--transition),
+        transform var(--transition);
+}
+
+.file-item-download:hover {
+    background: #333333;
+    transform: translateY(-1px);
 }
 
 
@@ -365,7 +495,17 @@ button {
 
 @media (max-width: 600px) {
     #app {
-        padding: var(--spacing5) 0;
+        width: min(100% - 24px, 760px);
+
+        padding: 48px 0;
+    }
+
+    .app-header {
+        margin-bottom: 40px;
+    }
+
+    .app-header h1 {
+        font-size: 1.8rem;
     }
 
     .drop-zone {
@@ -377,66 +517,16 @@ button {
         align-items: flex-start;
     }
 
-    .file-item-remove {
-        padding: var(--spacing2);
+    .file-item-status,
+    .file-item-progress {
+        display: none;
     }
-}
 
-/* ================================
-   File Status
-================================ */
+    .container {
+        justify-content: stretch;
+    }
 
-.file-item-status {
-    flex-shrink: 0;
-
-    color: var(--text-muted);
-    font: var(--small);
-}
-
-.file-item-progress {
-    width: 120px;
-    height: 6px;
-
-    overflow: hidden;
-
-    border-radius: 999px;
-
-    background: var(--bg-light);
-}
-
-.file-item-progress-bar {
-    width: 0;
-    height: 100%;
-
-    border-radius: inherit;
-
-    background: var(--primary);
-
-    transition: width 0.2s ease;
-}
-
-.file-item-download {
-    flex-shrink: 0;
-
-    padding: var(--spacing2) var(--spacing3);
-
-    border: var(--border-card);
-    border-radius: 6px;
-
-    background: var(--primary);
-    color: var(--bg-dark);
-
-    font-weight: 600;
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition:
-        background var(--transition),
-        transform var(--transition);
-}
-
-.file-item-download:hover {
-    background: var(--secondary);
-    transform: translateY(-1px);
+    .container button {
+        flex: 1;
+    }
 }
