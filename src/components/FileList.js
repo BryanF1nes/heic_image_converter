@@ -7,10 +7,24 @@ const FileList = {
     render(onUpdate) {
         const container = document.createElement("section");
 
-        container.classList.add("file-list");
+        container.classList.add("file-list-container");
 
-        this.container = container;
+        const count = document.createElement("p");
+
+        count.classList.add("file-count");
+
+        this.count = count;
+
+        container.appendChild(count);
+
+        const fileList = document.createElement("div");
+
+        fileList.classList.add("file-list");
+
+        this.container = fileList;
         this.onUpdate = onUpdate;
+
+        container.appendChild(fileList);
 
         this.update();
 
@@ -19,6 +33,8 @@ const FileList = {
 
     update() {
         const files = getFiles();
+
+        this.count.textContent = `${files.length} files selected`;
 
         const currentIds = new Set(
             files.map((item) => item.id)
