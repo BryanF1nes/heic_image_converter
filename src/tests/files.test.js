@@ -1,7 +1,6 @@
-import { getFiles, addFiles, removeFile, removeFile } from "../state/files";
+import { getFiles, addFiles, removeFile, clearFiles } from "../state/files";
 
-
-it('Adding files to the queue', () => {
+it('Should add a file to the files array', () => {
     const file = {
         id: crypto.randomUUID(),
         file: 'Test',
@@ -9,6 +8,33 @@ it('Adding files to the queue', () => {
         progress: 0,
         output: null,
         error: null,
-    }
-    expect(getFiles.length()).toBe(2)
+    };
+
+    addFiles([file]);
+    expect(getFiles().length).toBe(1);
+    clearFiles();
+});
+
+it('Should add multiple files to the files array', () => {
+    const files = [
+        {
+            id: crypto.randomUUID(),
+            file: 'Test',
+            status: "waiting",
+            progress: 0,
+            output: null,
+            error: null,
+        },
+        {
+            id: crypto.randomUUID(),
+            file: 'Test2',
+            status: "waiting",
+            progress: 0,
+            output: null,
+            error: null,
+        },
+    ];
+
+    addFiles(files);
+    expect(getFiles().length).toBe(2);
 })
