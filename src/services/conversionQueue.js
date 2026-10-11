@@ -4,7 +4,7 @@ import Converter from "./converter";
 const ConversionQueue = {
     isProcessing: false,
 
-    async start(onUpdate) {
+    async start(onUpdate, concurrencyLimit = 3) {
         if (this.isProcessing) {
             return;
         }
@@ -13,17 +13,33 @@ const ConversionQueue = {
 
         try {
             const files = getFiles();
+            const waitingFiles = files.filter(item => item.status === "waiting");
 
-            for (const item of files) {
-                if (item.status !== "waiting") {
-                    continue;
+            let nextIndex = 0;
+
+            async function worker() {
+                while (nextIndex < waitingFiles.length) {
+                    const item = waitingFiles[nextIndex];
+                    nextIndex++;
+
+                    await ConversionQueue.process(item, onUpdate)
                 }
-
-                await this.process(item, onUpdate);
             }
+
+            const workerCount = Math.min(
+                concurrencyLimit,
+                waitingFiles.length
+            );
+
+            await Promise.all(
+                Array.from({
+                    length: workerCount
+                }, () => worker())
+            )
         } finally {
             this.isProcessing = false;
         }
+
     },
 
     async process(item, onUpdate) {
