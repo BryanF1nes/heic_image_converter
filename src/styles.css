@@ -367,6 +367,81 @@ p {
     color: var(--text);
 }
 
+/* ================================
+   Conversion Mode
+================================ */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: var(--spacing2);
+}
+
+.conversion-settings {
+    display: flex;
+    gap: var(--spacing1);
+}
+
+#conversion-mode {
+    min-width: 190px;
+    padding: 10px 36px 10px 12px;
+
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-sm);
+
+    background-color: var(--white);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    outline: none;
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background-color var(--transition);
+
+    appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+#conversion-mode:hover:not(:disabled) {
+    border-color: var(--text);
+    background-color: var(--bg-subtle);
+}
+
+#conversion-mode:focus-visible {
+    border-color: var(--black);
+    box-shadow: 0 0 0 3px rgb(0 0 0 / 10%);
+}
+
+#conversion-mode:disabled {
+    background-color: var(--bg-muted);
+    color: var(--text-subtle);
+
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.container label {
+    display: flex;
+    align-items: center;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 
 /* ================================
    Empty File List
@@ -392,7 +467,7 @@ p {
 
 .container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 
     gap: var(--spacing2);
 
